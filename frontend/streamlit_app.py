@@ -19,7 +19,7 @@ if st.button("Search"):
     else:
         with st.spinner("Searching assessments..."):
             response = requests.post(
-                "http://127.0.0.1:5000/recommend",
+                "https://shl-product-recommendation-system-emfi.onrender.com/recommend",
                 json={"query": query, "k": k}
             )
 

@@ -1,0 +1,26 @@
+# Ignore virtual environments
+venv/
+.env
+
+# Ignore notebooks & data exploration
+*.ipynb
+.ipynb_checkpoints/
+
+# Ignore cache
+__pycache__/
+.cache/
+models/
+
+# Ignore git metadata
+.git
+.gitignore
+
+# Ignore frontend
+frontend/
+
+# Ignore unused folders
+extract_data/
+
+# Ignore large datasets (keep only cleaned)
+Labelled_Train_Dataset.xlsx
+grouped_assessments.json

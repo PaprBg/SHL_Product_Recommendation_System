@@ -19,7 +19,7 @@ if st.button("Search"):
     else:
         with st.spinner("Searching assessments..."):
             response = requests.post(
-                "https://backend.onrender.com/recommend",
+                "https://shlflask.zeabur.app/recommend",
                 json={"query": query, "k": k}
             )
 

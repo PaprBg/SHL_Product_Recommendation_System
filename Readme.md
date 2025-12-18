@@ -1,6 +1,6 @@
 # SHL Assessment Recommendation System
 
-An end-to-end NLP-powered semantic recommendation system that recommends suitable SHL assessments based on job descriptions or natural language queries using Retrieval-Augmented Generation (RAG) architecture.
+An end-to-end NLP-powered semantic recommendation system that recommends suitable SHL assessments based on job descriptions or natural language queries.
 
 ---
 
@@ -197,9 +197,9 @@ python scripts/generate_embeddings.py
 
 **Results:**
 
-Precision@5: 0.82
-Recall@5: 0.76
-MRR: 0.89
+Precision@5: 0.4
+Recall@5: 0.6
+HIT: 0.5
 
 ---
 
@@ -212,6 +212,8 @@ MRR: 0.89
 **Endpoints:**
 
 #### `POST /api/recommend`
+
+**API Endpoint URL** https://shl-product-recommendation-system-emfi.onrender.com/recommend
 
 **Request:**
 ```json
@@ -289,6 +291,8 @@ MRR: 0.89
 - 📋 Detailed assessment cards with metadata
 - 🔗 Direct links to assessment pages
 - ⚡ Real-time search with loading indicator
+
+**frontend URL** https://shlassessmentrecommendation.streamlit.app/
 
 ---
 

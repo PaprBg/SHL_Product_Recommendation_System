@@ -1,9 +1,19 @@
-import pandas as pd
+import os
+import requests
+import numpy as np
 import faiss
 import pickle
-import numpy as np
-from sentence_transformers import SentenceTransformer
+import pandas as pd
+from dotenv import load_dotenv
 
+load_dotenv()
+
+HF_API_TOKEN = os.getenv("HF_API_TOKEN")
+
+API_URL = "https://router.huggingface.co/hf-inference/models/sentence-transformers/all-MiniLM-L6-v2/pipeline/feature-extraction"
+headers = {
+    "Authorization": f"Bearer {HF_API_TOKEN}",
+}
 
 # -------------------- LOAD RESOURCES --------------------
 
@@ -18,14 +28,28 @@ with open("vector_texts.pkl", "rb") as f:
     vector_texts = pickle.load(f)
 
 # Load SAME embedding model used during indexing
-model = SentenceTransformer("all-MiniLM-L6-v2")
+# model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
 # -------------------- CORE FUNCTIONS --------------------
 
 def embed_query(query: str):
     """Embed user query using SentenceTransformer"""
-    return model.encode([query]).astype("float32")
+    response = requests.post(
+        API_URL,
+        headers=headers,
+        json={"inputs": query}
+    )
+
+    response.raise_for_status()
+
+    embedding = response.json()
+
+    # HF returns [768] or [[768]]
+    if isinstance(embedding[0], list):
+        embedding = embedding[0]
+
+    return np.array([embedding], dtype="float32")
 
 
 def find_assessments(user_query, k=5):
